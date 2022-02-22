@@ -2,5 +2,7 @@ import {combineReducers} from "redux";
 import {testReducer} from "./testReducer";
 
 export const reducers = combineReducers({
-    testReducer
+    testReducer,
+    posts: postsReducer,
+    profiles: profilesReducer
 })

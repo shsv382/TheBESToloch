@@ -1,0 +1,11 @@
+.startpage-button {
+    color: #0a080f;
+    display: inline-block;
+    padding: 5px;
+    margin: 10px;
+    background-color: lightblue;
+    text-decoration: none;
+    &:visited {
+        color: #0a080f;
+    }
+}
