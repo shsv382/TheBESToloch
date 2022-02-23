@@ -1,16 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { connect } from "react-redux";
 
 import Post from "../../containers/post/post.component.jsx";
 
 import { fetchPosts } from "../../reduсers/posts/posts.actions";
 
-const PostsPage = ({ posts, pending, errorMessage, fetchPosts }) => {
+const PostsPage = () => {
+    // получаем кусок state с постами
+    const { posts, pending, errorMessage } = useSelector((state) => state.posts)
+
+    // componentDidMount, запрос постов
+    const dispatch = useDispatch();
     useEffect(() => {
-        fetchPosts();
-    }, [])
-    console.log(posts, pending, errorMessage)
+        dispatch(fetchPosts());
+    }, [dispatch])
+
     return (
         <div>
             <h1>Posts</h1>
@@ -18,21 +22,11 @@ const PostsPage = ({ posts, pending, errorMessage, fetchPosts }) => {
                 pending ?
                     "Загрузка..." :
                     errorMessage ? 
-                        `${errorMessage}` :
+                        `${errorMessage}` : // можно сделать отдельный компонент
                         posts.length && posts.map(post => (<Post post={post} key={post.id} />))
             }
         </div>
     )
 }
 
-const mapStateToProps = (state) => ({
-    posts: state.posts.posts,
-    pending: state.posts.pending,
-    errorMessage: state.posts.errorMessage
-})
-
-const mapDispatchToProps = dispatch => ({
-    fetchPosts: () => dispatch(fetchPosts())
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(PostsPage);
+export default PostsPage;
