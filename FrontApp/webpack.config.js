@@ -7,7 +7,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 const stylesHandler = MiniCssExtractPlugin.loader;
 
 const config = {
-    entry: './src/js/index.js',
+    entry: ["regenerator-runtime/runtime.js", "./src/js/index.js"],
     output: {
         path: path.resolve(__dirname, 'dist'),
     },

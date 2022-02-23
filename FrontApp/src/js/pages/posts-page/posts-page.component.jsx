@@ -1,9 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 
-const PostsPage = () => {
+import Post from "../../containers/post/post.component.jsx";
+
+import { fetchPosts } from "../../reduсers/posts/posts.actions";
+
+const PostsPage = ({ posts, pending, errorMessage, fetchPosts }) => {
+    useEffect(() => {
+        fetchPosts();
+    }, [])
+    console.log(posts, pending, errorMessage)
     return (
-        <h1>Posts</h1>
+        <div>
+            <h1>Posts</h1>
+            {
+                pending ?
+                    "Загрузка..." :
+                    errorMessage ? 
+                        `${errorMessage}` :
+                        posts.length && posts.map(post => (<Post post={post} key={post.id} />))
+            }
+        </div>
     )
 }
 
-export default PostsPage;
+const mapStateToProps = (state) => ({
+    posts: state.posts.posts,
+    pending: state.posts.pending,
+    errorMessage: state.posts.errorMessage
+})
+
+const mapDispatchToProps = dispatch => ({
+    fetchPosts: () => dispatch(fetchPosts())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostsPage);
