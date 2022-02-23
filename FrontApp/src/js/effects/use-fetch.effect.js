@@ -9,6 +9,8 @@ const useFetch = url => {
             setData(dataArray);
         }
         fetchData();
-    });
+    }, []);
     return data;
 }
+
+export default useFetch;

@@ -9,7 +9,7 @@ export const Application = () => {
             <h1>Стартовая страница.</h1>
             <h3>Здесь делать кнопки</h3>
             <Link to='/posts' className="startpage-button">Посты</Link>
-            <Link to='/profiles' className="startpage-button">Профили</Link>
+            <Link to='/profile' className="startpage-button">Профили</Link>
         </div>
     );
 }
