@@ -18,6 +18,23 @@ const PostsPage = () => {
     return (
         <div>
             <h1>Posts</h1>
+            <button onClick={() => {
+                fetch(`http://localhost:3000/posts/`, 
+                    {
+                        method: 'POST',
+                        headers: {
+                        'Content-Type': 'application/json;charset=utf-8'
+                        },
+                        body: JSON.stringify({
+                            title: `title${posts.length+1}`,
+                            author: 'typicode1'
+                        })
+                    }
+                )
+                .then(res => res.json())
+                .then(data => navigate('/posts'))
+                .catch(e => console.error(e.message))
+            }}>Добавить пост</button>
             {
                 pending ?
                     "Загрузка..." :
