@@ -9,7 +9,6 @@ import {Application} from "./containers/Application";
 import {Route, Routes} from "react-router";
 import PostsPage from './pages/posts-page/posts-page.component.jsx';
 import ProfilesPage from './pages/profiles-page/profiles-page.component.jsx';
-// import { thunkMiddleware } from "redux-thunk";
 import thunk from 'redux-thunk';
 
 
